@@ -1,4 +1,6 @@
-FROM eclipse-temurin:11-jre-alpine
+FROM maven:3.9.15-eclipse-temurin-17 AS maven_upstream
+
+FROM eclipse-temurin:11-jdk-alpine
 
 # 作業ディレクトリを設定
 WORKDIR /app
