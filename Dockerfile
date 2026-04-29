@@ -1,33 +1,28 @@
-# Multi-stage build for Maven projects
-FROM maven:3.8.3-openjdk-17 AS build
+# ベースイメージを指定
+FROM maven:3.8.3-openjdk-17-slim AS build
+
+# 作業ディレクトリを指定
 WORKDIR /app
 
-# Copy Maven wrapper and pom.xml first for better caching
-COPY mvnw .
+# Maven Wrapperのセットアップ
 COPY .mvn .mvn
+
+# Mavenプロジェクトをビルド
 COPY pom.xml .
-RUN chmod +x ./mvnw
+RUN mvn -B dependency:go-offline
 
-# Download dependencies (this layer will be cached if pom.xml doesn't change)
-RUN ./mvnw dependency:go-offline -B
-
-# Copy source code and build
+# アプリケーションのビルド
 COPY src src
-RUN ./mvnw clean package -DskipTests
+RUN mvn -B package -DskipTests
 
-# Runtime stage
-FROM eclipse-temurin:17-jre-alpine
-WORKDIR /app
+# JREベースイメージを設定
+FROM openjdk:17-jdk-slim
 
-# Create non-root user for security
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
+# アプリケーションのJARファイルをコピー
+COPY --from=build /app/target/*.jar /app/app.jar
 
-# Copy the jar file
-COPY --from=build /app/target/*.jar app.jar
+#デフォルトポート番号である10000番に合わせた
+EXPOSE 10000
 
-# Use environment variable for port (Render sets this automatically)
-EXPOSE ${PORT:-8080}
-
-# Use exec form for better signal handling
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# アプリケーションの実行
+CMD ["java", "-jar", "/app/app.jar"]
