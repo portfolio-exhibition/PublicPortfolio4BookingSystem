@@ -7,7 +7,7 @@ WORKDIR /app
 COPY src/main/java/com/example/booking_system/BookingSystemApplication.java /app
 
 # Javaファイルをコンパイル
-RUN javac BookingSystemApplication.java
+RUN javac src/main/java/com/example/booking_system/BookingSystemApplication.java
 
 # ポート8080を公開
 EXPOSE 8080
