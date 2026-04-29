@@ -4,7 +4,7 @@ FROM eclipse-temurin:11-jre-alpine
 WORKDIR /app
 
 # Javaファイルをコピー
-COPY BookingSystemApplication.java /app
+COPY src/main/java/com/example/booking_system/BookingSystemApplication.java /app
 
 # Javaファイルをコンパイル
 RUN javac BookingSystemApplication.java
