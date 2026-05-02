@@ -1,5 +1,6 @@
 package com.example.booking_system.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -7,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-import com.example.booking_system.module.mFileReader;
 import com.example.booking_system.service.StripeService;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.model.Event;
@@ -17,8 +17,8 @@ import com.stripe.net.Webhook;
 public class StripeWebhookController {
     private final StripeService stripeService;
 
-    //@Value("${stripe.webhook-secret}")   //application.properties から読み込む場合のコード
-    //private String webhookSecret;
+    @Value("${stripe.webhook-secret}")
+    private String webhookSecret;
 
     public StripeWebhookController(StripeService stripeService) {
         this.stripeService = stripeService;
@@ -27,8 +27,6 @@ public class StripeWebhookController {
     @PostMapping("/stripe/webhook")
     public ResponseEntity<String> webhook(@RequestBody String payload, @RequestHeader("Stripe-Signature") String sigHeader) {        
         Event event = null;
-        mFileReader mfile = new mFileReader();   //ローカルの外部ファイルから読み込む用のコード
-        String webhookSecret = mfile.ReadText("C:\\Stripe\\WebHook.txt");
 
         try {
         	//System.out.println("webhookSecret の内容：" + webhookSecret);
