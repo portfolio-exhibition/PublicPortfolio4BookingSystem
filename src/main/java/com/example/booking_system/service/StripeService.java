@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.example.booking_system.dto.ReservationDTO;
 import com.example.booking_system.entity.House;
 import com.example.booking_system.entity.User;
-import com.example.booking_system.module.mFileReader;
 import com.example.booking_system.repository.HouseRepository;
 import com.stripe.Stripe;
 import com.stripe.exception.ApiConnectionException;
@@ -38,19 +37,17 @@ public class StripeService {
     private static final String CURRENCY = "jpy";  // 通貨
     private static final long QUANTITY = 1L;  // 数量
     private static final Mode MODE = SessionCreateParams.Mode.PAYMENT;  // 支払いモード
-    //private static final String SUCCESS_URL = "http://localhost:8080/reservations?reserved";  // 決済成功時のリダイレクト先URL
-    //private static final String CANCEL_URL = "http://localhost:8080/reservations/confirm";  // 決済キャンセル時のリダイレクト先URL
     private static final DateTimeFormatter DATE_TIME_FORMATTER  = DateTimeFormatter.ofPattern("yyyy-MM-dd");  // 日付のフォーマット
 
-    // Stripeのシークレットキー、application.properties から読み込む場合のコード
-    //@Value("${stripe.api-key}")
+    // Stripeのシークレットキー、application.properties から読み込む
+    @Value("${stripe.api-key}")
     private String stripeApiKey;
     
-    // 決済成功時のリダイレクト先URL 
+    // 決済成功時のリダイレクト先URL、application.properties から読み込む
     @Value("${stripe.success-url}")
     private String stripeSuccessUrl;
 
-    // 決済キャンセル時のリダイレクト先URL
+    // 決済キャンセル時のリダイレクト先URL、application.properties から読み込む
     @Value("${stripe.cancel-url}")
     private String stripeCancelUrl; 
     
@@ -65,12 +62,6 @@ public class StripeService {
     // 依存性の注入後に一度だけ実行するメソッド
     @PostConstruct
     private void init() {
-    	//ローカルの外部ファイルから読み込む用のコード
-    	mFileReader mfile = new mFileReader();
-        // Stripeのシークレットキーを設定する　※GitHub などにシークレットキーをアップロードしたくないので、ローカルのファイルから読み込む
-    	stripeApiKey = mfile.ReadText("C:\\Stripe\\SecretKey.txt");
-        //System.out.println("Stripe.apiKey の内容：" + Stripe.apiKey);
-    	//application.properties から読み込む場合のコード
     	Stripe.apiKey = stripeApiKey;
     }
 
