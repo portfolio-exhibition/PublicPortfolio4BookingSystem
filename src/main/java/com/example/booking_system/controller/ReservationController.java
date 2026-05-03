@@ -27,7 +27,7 @@ import com.example.booking_system.form.ReservationInputForm;
 import com.example.booking_system.security.UserDetailsImpl;
 import com.example.booking_system.service.HouseService;
 import com.example.booking_system.service.ReservationService;
-import com.example.booking_system.service.StripeService;
+//import com.example.booking_system.service.StripeService;   決済機能ありの場合はコメントアウトを解除
 
 import jakarta.servlet.http.HttpSession;
 
@@ -35,16 +35,17 @@ import jakarta.servlet.http.HttpSession;
 public class ReservationController {
     private final ReservationService reservationService;
     private final HouseService houseService;
-    private final StripeService stripeService;
+    //private final StripeService stripeService;   決済機能ありの場合はコメントアウトを解除
 
-    public ReservationController(ReservationService reservationService, HouseService houseService, StripeService stripeService) {
+    // public ReservationController(ReservationService reservationService, HouseService houseService, StripeService stripeService) {
+    public ReservationController(ReservationService reservationService, HouseService houseService) {
         this.reservationService = reservationService;
         this.houseService = houseService;
-        this.stripeService = stripeService;
+        //this.stripeService = stripeService;   決済機能ありの場合はコメントアウトを解除
     }
 
     // Spring Securityが提供する @AuthenticationPrincipal アノテーションを引数につけることで、現在ログイン中のユーザー情報を取得できます。
-    // なお、アノテーションをつける引数は UserDetailsインターフェースを実装したクラスのオブジェクト（本教材ではUserDetailsImplクラスのオブジェクト）です。
+    // なお、アノテーションをつける引数は UserDetailsインターフェースを実装したクラスのオブジェクト（本プロジェクトでは UserDetailsImpl クラスのオブジェクト）です。
     @GetMapping("/reservations")
     public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
                         @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable,
@@ -120,11 +121,13 @@ public class ReservationController {
     }
     
     @GetMapping("/reservations/confirm")
+    public String confirm(RedirectAttributes redirectAttributes, HttpSession httpSession, Model model) {
+    /** 決済機能ありの場合はコメントアウトを解除し、上記のメソッド、引数をコメントアウト
     public String confirm(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
             RedirectAttributes redirectAttributes,
             HttpSession httpSession,
-            Model model) 
-    {
+            Model model)
+    {*/
         // セッションからDTOを取得する
         ReservationDTO reservationDTO = (ReservationDTO)httpSession.getAttribute("reservationDTO");
 
@@ -134,17 +137,17 @@ public class ReservationController {
             return "redirect:/houses";
         }
         
-        User user = userDetailsImpl.getUser();
+        //User user = userDetailsImpl.getUser();     // 決済機能ありの場合はコメントアウトを解除
 
-        String sessionId = stripeService.createStripeSession(reservationDTO, user);
+        //String sessionId = stripeService.createStripeSession(reservationDTO, user);     // 決済機能ありの場合はコメントアウトを解除
 
         model.addAttribute("reservationDTO", reservationDTO);
-        model.addAttribute("sessionId", sessionId);
+        //model.addAttribute("sessionId", sessionId);   // 決済機能ありの場合はコメントアウトを解除
 
         return "reservations/confirm";
     }
     
-    /* 決済機能なしの場合の処理：create()メソッドで予約情報の登録処理を行い、予約一覧ページにリダイレクトさせる
+    // 決済機能なしの場合の処理：create()メソッドで予約情報の登録処理を行い、予約一覧ページにリダイレクトさせる
     @PostMapping("/reservations/create")
     public String create(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, RedirectAttributes redirectAttributes, HttpSession httpSession) {
         // セッションからDTOを取得する
@@ -166,5 +169,4 @@ public class ReservationController {
 
         return "redirect:/reservations?reserved";
     }
-    */
 }

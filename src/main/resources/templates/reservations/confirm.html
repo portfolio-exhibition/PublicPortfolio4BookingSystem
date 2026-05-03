@@ -79,15 +79,16 @@
                                </div>
                            </div>
 
-                           <!-- 決済機能なしの時のコード
+                           <!-- 決済機能なしの時のコード -->
                            <form method="post" th:action="@{/reservations/create}" class="d-flex justify-content-center">
                                <button type="submit" class="btn text-white shadow-sm w-100 samuraitravel-btn">確定する</button>
                            </form>
-                           -->
-                           <!-- form は不要なので div に置き換え -->
+                           <!-- -->
+                           <!-- 決済機能あり時のコード
                            <div class="d-flex justify-content-center">
                                <button id="paymentButton" class="btn text-white shadow-sm w-100 samuraitravel-btn">決済する</button>
                            </div>
+                           -->
                        </div>
                    </div>
                </div>
@@ -99,14 +100,16 @@
        <div th:replace="~{fragment :: scripts}"></div>
        
        <!-- Stripe -->
-       <!--
+       <!-- 決済機能あり時のコード
 		    StripeのJavaScriptライブラリを（インターネット経由で）読み込んでいます。
          　 このライブラリを読み込むことで、JSファイル内でStripe関連の処理が実行可能になります。
        -->
+       <!--
        <script src="https://js.stripe.com/v3"></script>
        <script th:inline="javascript">
            const sessionId = /*[[${sessionId}]]*/"sessionId";
        </script>
        <script th:src="@{/js/stripe.js}"></script>
+       -->
  </body>
 </html>

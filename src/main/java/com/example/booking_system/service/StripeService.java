@@ -168,7 +168,7 @@ public class StripeService {
                 Map<String, String> sessionMetadata = session.getPaymentIntentObject().getMetadata();
 
                 // 予約情報をデータベースに登録する
-                reservationService.createReservation(sessionMetadata);
+                //reservationService.createReservation(sessionMetadata);   決済機能ありの場合はコメントアウトを解除
 
                 System.out.println("予約情報の登録処理が成功しました。");
 

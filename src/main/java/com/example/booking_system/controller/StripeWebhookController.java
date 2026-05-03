@@ -29,7 +29,6 @@ public class StripeWebhookController {
         Event event = null;
 
         try {
-        	//System.out.println("webhookSecret の内容：" + webhookSecret);
             event = Webhook.constructEvent(payload, sigHeader, webhookSecret);
         } catch (SignatureVerificationException e) {
             System.out.println("Webhookの署名シークレットが正しくありません。");
