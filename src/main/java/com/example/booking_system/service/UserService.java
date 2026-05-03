@@ -40,7 +40,8 @@ public class UserService {
         user.setEmail(signupForm.getEmail());
         user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
         user.setRole(role);
-        user.setEnabled(false);
+        user.setEnabled(true);
+        //user.setEnabled(false);   // メール認証有効時は認証完了するまで false
 
         return userRepository.save(user);
     }
