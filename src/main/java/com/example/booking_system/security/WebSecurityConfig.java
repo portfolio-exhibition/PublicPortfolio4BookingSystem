@@ -46,13 +46,13 @@ public class WebSecurityConfig {
                 .permitAll()
             )
             .csrf(csrf -> csrf.ignoringRequestMatchers("/stripe/webhook", "/h2-console/**"));
-            /** .csrf(csrf -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/stripe/webhook"))); の解説
-             * Spring Securityを利用している場合、POSTメソッドでリクエストを行うとCSRF対策のチェックが入ります。
-             * フォームの場合は自動的にチェック用のトークンを生成してくれるので問題ないのですが、今回のように外部からPOST送信を受ける場合、そのままではCSRF対策のチェックによってアクセスが拒否されてしまいます。
-             * そこで新しく追加した以下のコードでは、「/stripe/webhook」に対するPOST送信についてはCSRF対策のチェックを無効にしています。
+            /** .csrf(csrf -> csrf.ignoringRequestMatchers("/stripe/webhook", "/h2-console/**")); の解説
+             * Spring Securityを利用している場合、POSTメソッドでリクエストを行うとCSRF対策のチェックが入りアクセス拒否される。
+             * フォームの場合は自動的にチェック用のトークンを生成してくれるので問題ないが、外部からPOST送信を受ける場合、そのままではCSRF対策のチェックによってアクセスが拒否されてしまう。
+             * その為、「/stripe/webhook」、「/h2-console/**」に対するPOST送信についてはCSRF対策のチェックを無効にする。
              */
-            http.headers().frameOptions().disable();
-            /** http.headers().frameOptions().disable(); の解説
+            http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())); // 同一オリジンのみ許可
+            /** http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())); の解説
              ** Spring Securityでデフォルト有効になっている「X-Frame-Options: DENY」ヘッダーを無効にし、iframeによるページ埋め込みを許可する設定です。
              ** H2コンソールやiframeを利用した別サイト連携に必須ですが、クリックジャッキング攻撃のリスクが高まるため注意が必要です。
              */
