@@ -38,6 +38,6 @@ build/
 
 ### Project ###
 /src/main/resources/application.properties
-/src/main/resources/data.sql
-/src/main/resources/schema.sql
+/src/main/resources/application-test.properties
+*.env
 一時退避/
