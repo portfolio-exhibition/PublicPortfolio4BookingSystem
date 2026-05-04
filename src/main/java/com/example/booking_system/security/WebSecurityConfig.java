@@ -9,35 +9,47 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class WebSecurityConfig {
-
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests((requests) -> requests  // アクセス許可に関する設定
-                .requestMatchers("/hello", "/login", "/resources/**").permitAll()  // 全ユーザーにアクセスを許可するURL
-                .anyRequest().authenticated()  // 上記以外のURLはログインが必要（ロールを問わない）
+            .authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/h2-console/**", "/hello", "/css/**", "/images/**", "/js/**", "/storage/**", "/", "/signup/**", "/houses", "/houses/{id}", "/stripe/webhook", "/houses/{houseId}/reviews").permitAll()  // すべてのユーザーにアクセスを許可するURL
+                .requestMatchers("/admin/**").hasRole("ADMIN")  // 管理者にのみアクセスを許可するURL
+                .anyRequest().authenticated()                   // 上記以外のURLはログインが必要（会員または管理者のどちらでもOK）
             )
-            .formLogin((form) -> form  // ログインに関する設定
+            .formLogin((form) -> form
                 .loginPage("/login")              // ログインページのURL
                 .loginProcessingUrl("/login")     // ログインフォームの送信先URL
-                .defaultSuccessUrl("/adminuser?loggedIn")  // ログイン成功時のリダイレクト先URL
+                .defaultSuccessUrl("/?loggedIn")  // ログイン成功時のリダイレクト先URL
                 .failureUrl("/login?error")       // ログイン失敗時のリダイレクト先URL
                 .permitAll()
             )
-            .logout((logout) -> logout  // ログアウトに関する設定
+            .logout((logout) -> logout
                 .logoutSuccessUrl("/?loggedOut")  // ログアウト時のリダイレクト先URL
                 .permitAll()
-            );
+            )
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/stripe/webhook", "/h2-console/**"));
+            /** .csrf(csrf -> csrf.ignoringRequestMatchers("/stripe/webhook", "/h2-console/**")); の解説
+             * Spring Securityを利用している場合、POSTメソッドでリクエストを行うとCSRF対策のチェックが入りアクセス拒否される。
+             * フォームの場合は自動的にチェック用のトークンを生成してくれるので問題ないが、外部からPOST送信を受ける場合、そのままではCSRF対策のチェックによってアクセスが拒否されてしまう。
+             * その為、「/stripe/webhook」、「/h2-console/**」に対するPOST送信についてはCSRF対策のチェックを無効にする。
+             */
+            http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())); // 同一オリジンのみ許可
+            /** http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())); の解説
+             ** Spring Securityでデフォルト有効になっている「X-Frame-Options: DENY」ヘッダーを無効にし、iframeによるページ埋め込みを許可する設定です。
+             ** H2コンソールやiframeを利用した別サイト連携に必須ですが、クリックジャッキング攻撃のリスクが高まるため注意が必要です。
+             */
 
         return http.build();
     }
 
     @Bean
-    PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

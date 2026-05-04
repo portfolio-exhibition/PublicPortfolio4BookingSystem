@@ -2,10 +2,9 @@ package com.example.booking_system;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 // データベースの無効化を解除する時に(exclude = {DataSourceAutoConfiguration.class})を削除
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication   //(exclude = {DataSourceAutoConfiguration.class})
 public class BookingSystemApplication {
 
 	public static void main(String[] args) {
