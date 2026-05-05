@@ -33,16 +33,17 @@ public class WebSecurityConfig {
                 .logoutSuccessUrl("/?loggedOut")  // ログアウト時のリダイレクト先URL
                 .permitAll()
             )
-            .csrf(csrf -> csrf.ignoringRequestMatchers("/stripe/webhook", "/h2-console/**"));
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/stripe/webhook", "/h2-console/**"))
             /** .csrf(csrf -> csrf.ignoringRequestMatchers("/stripe/webhook", "/h2-console/**")); の解説
              * Spring Securityを利用している場合、POSTメソッドでリクエストを行うとCSRF対策のチェックが入りアクセス拒否される。
              * フォームの場合は自動的にチェック用のトークンを生成してくれるので問題ないが、外部からPOST送信を受ける場合、そのままではCSRF対策のチェックによってアクセスが拒否されてしまう。
              * その為、「/stripe/webhook」、「/h2-console/**」に対するPOST送信についてはCSRF対策のチェックを無効にする。
              */
-            http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())); // 同一オリジンのみ許可
+            .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())); // 同一オリジンのみ許可
             /** http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())); の解説
              ** Spring Securityでデフォルト有効になっている「X-Frame-Options: DENY」ヘッダーを無効にし、iframeによるページ埋め込みを許可する設定です。
              ** H2コンソールやiframeを利用した別サイト連携に必須ですが、クリックジャッキング攻撃のリスクが高まるため注意が必要です。
+             ** 同一オリジン（Same Origin）とは、「スキーム（http/https）」「ホスト名」「ポート番号」が全て一致するページを指します。
              */
 
         return http.build();
