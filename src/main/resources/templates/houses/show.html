@@ -11,11 +11,11 @@
        <title>民宿詳細</title>
    </head>
    <body>
-       <div class="samuraitravel-wrapper">
+       <div class="booking_system-wrapper">
            <div th:replace="~{fragment :: header}"></div>
 
            <main>
-               <div class="container pt-4 pb-5 samuraitravel-container">
+               <div class="container pt-4 pb-5 booking_system-container">
                    <div class="row justify-content-center">
                        <div class="col-xxl-9 col-xl-10 col-lg-11">
                            <div class="d-flex justify-content-between mb-4">
@@ -74,7 +74,7 @@
                                            </div>
 
                                            <div class="col">
-                                               <span class="samuraitravel-pre-wrap" th:text="${house.description}"></span>
+                                               <span class="booking_system-pre-wrap" th:text="${house.description}"></span>
                                            </div>
                                        </div>
 
@@ -139,7 +139,7 @@
                                        <div class="card">
                                            <div class="card-body">
                                                <p class="card-text">予約するには<a th:href="@{/login}">ログイン</a>が必要です。</p>
-                                               <button type="submit" class="btn text-white shadow-sm w-100 samuraitravel-btn" disabled>予約する</button>
+                                               <button type="submit" class="btn text-white shadow-sm w-100 booking_system-btn" disabled>予約する</button>
                                            </div>
                                        </div>
                                    </div>
@@ -168,7 +168,7 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn text-white shadow-sm w-100 samuraitravel-btn">予約する</button>
+                                                        <button type="submit" class="btn text-white shadow-sm w-100 booking_system-btn">予約する</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -182,7 +182,7 @@
                                 <h2 class="mb-4 text-center">レビュー</h2>
                                 <div sec:authorize="isAuthenticated()" th:unless="${hasUserAlreadyReviewed}" class="row justify-content-center mb-4">
                                     <div class="col-lg-4">
-                                        <a th:href="@{/houses/__${house.id}__/reviews/register}" class="btn text-white shadow-sm w-100 samuraitravel-btn">レビューを投稿する</a>
+                                        <a th:href="@{/houses/__${house.id}__/reviews/register}" class="btn text-white shadow-sm w-100 booking_system-btn">レビューを投稿する</a>
                                     </div>
                                 </div>
                                 <div th:if="${#lists.isEmpty(newReviews)}" class="mb-4">                                    
@@ -197,7 +197,7 @@
                                                         <h5 class="card-title" th:text="${review.user.name}"></h5>
                                                         <span sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id == review.user.id}">
                                                             <a th:href="@{/houses/__${house.id}__/reviews/__${review.id}__/edit}" class="me-2">編集</a>
-                                                            <a href="#" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.id}">削除</a>
+                                                            <a href="#" class="booking_system-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.id}">削除</a>
                                                             <!-- 削除用モーダル -->
                                                             <div class="modal fade" th:id="${'deleteReviewModal' + review.id}" tabindex="-1" th:aria-labelledby="${'deleteReviewModalLabel' + review.id}">
                                                                 <div class="modal-dialog">
@@ -208,7 +208,7 @@
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <form method="post"th:action="@{/houses/__${house.id}__/reviews/__${review.id}__/delete}">
-                                                                                <button type="submit" class="btn samuraitravel-btn-danger text-white shadow-sm">削除</button>
+                                                                                <button type="submit" class="btn booking_system-btn-danger text-white shadow-sm">削除</button>
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -217,7 +217,7 @@
                                                         </span>      
                                                     </div>                                              
                                                     <p class="card-text mb-1">
-                                                        <span class="samuraitravel-star" th:each="star : ${#numbers.sequence(1, 5)}" th:text="${star <= review.score} ? '&#9733;' : '&#9734;'"></span>
+                                                        <span class="booking_system-star" th:each="star : ${#numbers.sequence(1, 5)}" th:text="${star <= review.score} ? '&#9733;' : '&#9734;'"></span>
                                                     </p>                      
                                                     <p class="card-text"><small class="text-muted" th:text="${#dates.format(review.createdAt, 'yyyy年MM月dd日')}"></small></p>                              
                                                     <p class="card-text" th:text="${review.content}"></p>

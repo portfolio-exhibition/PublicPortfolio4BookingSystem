@@ -11,60 +11,60 @@
         <!-- Swiper -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 
-        <title>SAMURAI Travel</title>
+        <title>宿泊施設検索予約サイト</title>
     </head>
     <body>
-        <div class="samuraitravel-wrapper">
+        <div class="booking_system-wrapper">
            <div th:replace="~{fragment :: header}"></div>
 
             <main>
                 <div>
-                    <div class="swiper samuraitravel-swiper">
+                    <div class="swiper booking_system-swiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide"><img th:src="@{/images/main1.jpg}"></div>
                             <div class="swiper-slide"><img th:src="@{/images/main2.jpg}"></div>
                             <div class="swiper-slide"><img th:src="@{/images/main3.jpg}"></div>
-                            <div class="d-flex align-items-center samuraitravel-overlay-background">
-                                <div class="container samuraitravel-container samuraitravel-overlay-text">
-                                    <h1 class="text-white samuraitravel-catchphrase-heading">旅の始まりは、ここから</h1>
-                                    <p class="text-white samuraitravel-catchphrase-paragraph">SAMURAI Travelは、日本最大級の民宿予約サイトです。</p>
+                            <div class="d-flex align-items-center booking_system-overlay-background">
+                                <div class="container booking_system-container booking_system-overlay-text">
+                                    <h1 class="text-white booking_system-catchphrase-heading">旅の満足度は宿で決まる。</h1>
+                                    <p class="text-white booking_system-catchphrase-paragraph">日本最大級の宿泊施設数であなたの旅をサポート。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div th:if="${param.loggedIn}" class="container samuraitravel-container pt-2">
+                <div th:if="${param.loggedIn}" class="container booking_system-container pt-2">
                     <div class="alert alert-info mt-4 mb-0">
                         ログインしました。
                     </div>
                 </div>
 
 
-                <div th:if="${param.loggedOut}" class="container samuraitravel-container pt-2">
+                <div th:if="${param.loggedOut}" class="container booking_system-container pt-2">
                     <div class="alert alert-info mt-4 mb-0">
                         ログアウトしました。
                     </div>
                 </div>
 
-                <div th:if="${successMessage}" class="container samuraitravel-container pt-2">
+                <div th:if="${successMessage}" class="container booking_system-container pt-2">
                     <div class="alert alert-info mt-4 mb-0">
                         <span th:text="${successMessage}"></span>
                     </div>
                 </div>
 
                 <div class="border-bottom mb-4 py-4">
-                    <div class="container samuraitravel-container my-2">
-                        <form method="get" th:action="@{/houses}" class="samuraitravel-search-form">
+                    <div class="container booking_system-container my-2">
+                        <form method="get" th:action="@{/houses}" class="booking_system-search-form">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="民宿名・目的地">
-                                <button type="submit" class="btn text-white shadow-sm samuraitravel-btn">検索</button>
+                                <button type="submit" class="btn text-white shadow-sm booking_system-btn">検索</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="container samuraitravel-container">
+                <div class="container booking_system-container">
 
                     <div class="row justify-content-center pt-2">
                         <div class="col-xl-3 col-lg-4 col-md-12 mb-4">
@@ -80,7 +80,7 @@
                                     </h3>
                                     <div id="hokkaido" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=北海道}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 北海道
                                             </div>
                                         </a>
@@ -95,32 +95,32 @@
                                     </h3>
                                     <div id="tohoku" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=青森県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 青森県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=岩手県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 岩手県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=宮城県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 宮城県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=秋田県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 秋田県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=山形県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 山形県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=福島県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 福島県
                                             </div>
                                         </a>
@@ -135,17 +135,17 @@
                                     </h3>
                                     <div id="kitakanto" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=茨城県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 茨城県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=栃木県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 栃木県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=群馬県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 群馬県
                                             </div>
                                         </a>
@@ -160,22 +160,22 @@
                                     </h3>
                                     <div id="shutoken" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=埼玉県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 埼玉県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=千葉県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 千葉県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=東京都}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 東京都
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=神奈川県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 神奈川県
                                             </div>
                                         </a>
@@ -190,17 +190,17 @@
                                     </h3>
                                     <div id="koshinetsu" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=新潟県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 新潟県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=山梨県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 山梨県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=長野県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 長野県
                                             </div>
                                         </a>
@@ -215,17 +215,17 @@
                                     </h3>
                                     <div id="hokuriku" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=富山県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 富山県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=石川県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 石川県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=福井県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 福井県
                                             </div>
                                         </a>
@@ -240,22 +240,22 @@
                                     </h3>
                                     <div id="tokai" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=岐阜県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 岐阜県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=静岡県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 静岡県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=愛知県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 愛知県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=三重県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 三重県
                                             </div>
                                         </a>
@@ -270,32 +270,32 @@
                                     </h3>
                                     <div id="kinki" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=滋賀県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 滋賀県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=京都府}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 京都府
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=大阪府}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 大阪府
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=兵庫県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 兵庫県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=奈良県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 奈良県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=和歌山県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 和歌山県
                                             </div>
                                         </a>
@@ -310,27 +310,27 @@
                                     </h3>
                                     <div id="sanyoSanin" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=鳥取県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 鳥取県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=島根県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 島根県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=岡山県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 岡山県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=広島県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 広島県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=山口県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 山口県
                                             </div>
                                         </a>
@@ -345,22 +345,22 @@
                                     </h3>
                                     <div id="shikoku" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=徳島県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 徳島県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=香川県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 香川県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=愛媛県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 愛媛県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=高知県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 高知県
                                             </div>
                                         </a>
@@ -375,37 +375,37 @@
                                     </h3>
                                     <div id="kyushu" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=福岡県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 福岡県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=佐賀県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 佐賀県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=長崎県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 長崎県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=熊本県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 熊本県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=大分県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 大分県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=宮崎県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 宮崎県
                                             </div>
                                         </a>
                                         <a th:href="@{/houses?area=鹿児島県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 鹿児島県
                                             </div>
                                         </a>
@@ -420,7 +420,7 @@
                                     </h3>
                                     <div id="okinawa" class="accordion-collapse collapse" data-bs-parent="#accordionArea">
                                         <a th:href="@{/houses?area=沖縄県}" class="link-secondary">
-                                            <div class="accordion-body samuraitravel-accordion-body">
+                                            <div class="accordion-body booking_system-accordion-body">
                                                 沖縄県
                                             </div>
                                         </a>
@@ -433,10 +433,10 @@
                             <h2 class="mb-3">人気の宿</h2>
                             <div class="row row-cols-sm-3 row-cols-1 g-3 mb-4">
                                 <div class="col" th:each="popularHouse : ${popularHouses}">
-                                    <a th:href="@{/houses/__${popularHouse.id}__}" class="link-dark samuraitravel-card-link">
+                                    <a th:href="@{/houses/__${popularHouse.id}__}" class="link-dark booking_system-card-link">
                                         <div class="card h-100">
-                                            <img th:if="${popularHouse.imageName}" th:src="@{/storage/__${popularHouse.imageName}__}" class="card-img-top samuraitravel-vertical-card-image" alt="店舗画像">
-                                            <img th:unless="${popularHouse.imageName}" th:src="@{/images/noImage.png}" class="card-img-top samuraitravel-vertical-card-image" alt="NO IMAGE">
+                                            <img th:if="${popularHouse.imageName}" th:src="@{/storage/__${popularHouse.imageName}__}" class="card-img-top booking_system-vertical-card-image" alt="店舗画像">
+                                            <img th:unless="${popularHouse.imageName}" th:src="@{/images/noImage.png}" class="card-img-top booking_system-vertical-card-image" alt="NO IMAGE">
                                             <div class="card-body">
                                                 <h3 class="card-title" th:text="${popularHouse.name}"></h3>
                                                 <p class="card-text mb-1">
@@ -454,10 +454,10 @@
                             <h2 class="mb-3">新着</h2>
                             <div class="row row-cols-xl-4 row-cols-2 g-3 mb-5">
                                 <div class="col" th:each="newHouse : ${newHouses}">
-                                    <a th:href="@{/houses/__${newHouse.id}__}" class="link-dark samuraitravel-card-link">
+                                    <a th:href="@{/houses/__${newHouse.id}__}" class="link-dark booking_system-card-link">
                                         <div class="card h-100">
-                                            <img th:if="${newHouse.imageName}" th:src="@{/storage/__${newHouse.imageName}__}" class="card-img-top samuraitravel-vertical-card-image" alt="店舗画像">
-                                            <img th:unless="${newHouse.imageName}" th:src="@{/images/noImage.png}" class="card-img-top samuraitravel-vertical-card-image" alt="NO IMAGE">
+                                            <img th:if="${newHouse.imageName}" th:src="@{/storage/__${newHouse.imageName}__}" class="card-img-top booking_system-vertical-card-image" alt="店舗画像">
+                                            <img th:unless="${newHouse.imageName}" th:src="@{/images/noImage.png}" class="card-img-top booking_system-vertical-card-image" alt="NO IMAGE">
                                             <div class="card-body">
                                                 <h3 class="card-title" th:text="${newHouse.name}"></h3>
                                                 <p class="card-text mb-1">

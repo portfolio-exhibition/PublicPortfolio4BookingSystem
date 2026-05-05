@@ -8,11 +8,11 @@
        <title>レビュー一覧</title>
    </head>
    <body>
-       <div class="samuraitravel-wrapper">
+       <div class="booking_system-wrapper">
            <div th:replace="~{fragment :: header}"></div>
 
            <main>
-               <div class="container pt-4 pb-5 samuraitravel-container">
+               <div class="container pt-4 pb-5 booking_system-container">
                    <div class="row justify-content-center">
                        <div class="col-xxl-9 col-xl-10 col-lg-11">
                            <nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -35,7 +35,7 @@
                                                    <h5 class="card-title" th:text="${review.user.name}"></h5>
                                                    <span sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id == review.user.id}">
                                                        <a th:href="@{/houses/__${house.id}__/reviews/__${review.id}__/edit}" class="me-2">編集</a>
-                                                       <a href="#" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.id}">削除</a>
+                                                       <a href="#" class="booking_system-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.id}">削除</a>
                                                        <!-- 削除用モーダル -->
                                                        <div class="modal fade" th:id="${'deleteReviewModal' + review.id}" tabindex="-1" th:aria-labelledby="${'deleteReviewModalLabel' + review.id}">
                                                            <div class="modal-dialog">
@@ -46,7 +46,7 @@
                                                                    </div>
                                                                    <div class="modal-footer">
                                                                        <form method="post"th:action="@{/houses/__${house.id}__/reviews/__${review.id}__/delete}">
-                                                                           <button type="submit" class="btn samuraitravel-btn-danger text-white shadow-sm">削除</button>
+                                                                           <button type="submit" class="btn booking_system-btn-danger text-white shadow-sm">削除</button>
                                                                        </form>
                                                                    </div>
                                                                </div>
@@ -55,7 +55,7 @@
                                                    </span>
                                                </div>
                                                <p class="card-text mb-1">
-                                                   <span class="samuraitravel-star" th:each="star : ${#numbers.sequence(1, 5)}" th:text="${star <= review.score} ? '&#9733;' : '&#9734;'"></span>
+                                                   <span class="booking_system-star" th:each="star : ${#numbers.sequence(1, 5)}" th:text="${star <= review.score} ? '&#9733;' : '&#9734;'"></span>
                                                </p>
                                                <p class="card-text"><small class="text-muted" th:text="${#dates.format(review.createdAt, 'yyyy年MM月dd日')}"></small></p>
                                                <p class="card-text" th:text="${review.content}"></p>
@@ -71,15 +71,15 @@
                                    <ul class="pagination">
                                        <li class="page-item">
                                            <span th:if="${reviewPage.isFirst()}" class="page-link disabled">前</span>
-                                           <a th:unless="${reviewPage.isFirst()}" th:href="@{/houses/__${house.id}__/reviews(page = ${reviewPage.getNumber() - 1})}" class="page-link samuraitravel-page-link">前</a>
+                                           <a th:unless="${reviewPage.isFirst()}" th:href="@{/houses/__${house.id}__/reviews(page = ${reviewPage.getNumber() - 1})}" class="page-link booking_system-page-link">前</a>
                                        </li>
                                        <li th:each="i : ${#numbers.sequence(0, reviewPage.getTotalPages() - 1)}" class="page-item">
-                                           <span th:if="${i == reviewPage.getNumber()}" class="page-link active samuraitravel-active" th:text="${i + 1}"></span>
-                                           <a th:unless="${i == reviewPage.getNumber()}" th:href="@{/houses/__${house.id}__/reviews(page = ${i})}" class="page-link samuraitravel-page-link" th:text="${i + 1}"></a>
+                                           <span th:if="${i == reviewPage.getNumber()}" class="page-link active booking_system-active" th:text="${i + 1}"></span>
+                                           <a th:unless="${i == reviewPage.getNumber()}" th:href="@{/houses/__${house.id}__/reviews(page = ${i})}" class="page-link booking_system-page-link" th:text="${i + 1}"></a>
                                        </li>
                                        <li class="page-item">
                                            <span th:if="${reviewPage.isLast()}" class="page-link disabled">次</span>
-                                           <a th:unless="${reviewPage.isLast()}" th:href="@{/houses/__${house.id}__/reviews(page = ${reviewPage.getNumber() + 1})}" class="page-link samuraitravel-page-link">次</a>
+                                           <a th:unless="${reviewPage.isLast()}" th:href="@{/houses/__${house.id}__/reviews(page = ${reviewPage.getNumber() + 1})}" class="page-link booking_system-page-link">次</a>
                                        </li>
                                    </ul>
                                </nav>

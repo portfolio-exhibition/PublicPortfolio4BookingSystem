@@ -8,11 +8,11 @@
 </head>
 
 <body>
-    <div class="samuraitravel-wrapper">
+    <div class="booking_system-wrapper">
         <div th:replace="~{fragment :: header}"></div>
 
         <main>
-            <div class="container pb-5 samuraitravel-container">
+            <div class="container pb-5 booking_system-container">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -25,11 +25,11 @@
                         <h1 class="mb-3 text-center">よくあるご質問（FAQ）</h1>
 
                         <!-- 検索フォーム -->
-                        <form method="get" th:action="@{/faqs}" class="mb-5 samuraitravel-search-form">
+                        <form method="get" th:action="@{/faqs}" class="mb-5 booking_system-search-form">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="keyword" th:value="${keyword}"
                                     placeholder="キーワードを入力">
-                                <button type="submit" class="btn text-white shadow-sm samuraitravel-btn">検索</button>
+                                <button type="submit" class="btn text-white shadow-sm booking_system-btn">検索</button>
                             </div>
                         </form>
 
@@ -80,16 +80,16 @@
                                         <span th:if="${faqs.first}" class="page-link disabled">前</span>
                                         <a th:unless="${faqs.first}"
                                             th:href="@{/faqs(page=${faqs.number - 1}, keyword=${keyword})}"
-                                            class="page-link samuraitravel-page-link">前</a>
+                                            class="page-link booking_system-page-link">前</a>
                                     </li>
 
                                     <!-- ページ番号 -->
                                     <li th:each="i : ${#numbers.sequence(0, faqs.totalPages - 1)}" class="page-item">
-                                        <span th:if="${i == faqs.number}" class="page-link active samuraitravel-active"
+                                        <span th:if="${i == faqs.number}" class="page-link active booking_system-active"
                                             th:text="${i + 1}"></span>
                                         <a th:unless="${i == faqs.number}"
                                             th:href="@{/faqs(page=${i}, keyword=${keyword})}"
-                                            class="page-link samuraitravel-page-link" th:text="${i + 1}"></a>
+                                            class="page-link booking_system-page-link" th:text="${i + 1}"></a>
                                     </li>
 
                                     <!-- 次のページ -->
@@ -97,7 +97,7 @@
                                         <span th:if="${faqs.last}" class="page-link disabled">次</span>
                                         <a th:unless="${faqs.last}"
                                             th:href="@{/faqs(page=${faqs.number + 1}, keyword=${keyword})}"
-                                            class="page-link samuraitravel-page-link">次</a>
+                                            class="page-link booking_system-page-link">次</a>
                                     </li>
                                 </ul>
                             </nav>

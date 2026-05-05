@@ -8,11 +8,11 @@
        <title>予約内容確認</title>
    </head>
    <body>
-       <div class="samuraitravel-wrapper">
+       <div class="booking_system-wrapper">
            <div th:replace="~{fragment :: header}"></div>
 
            <main>
-               <div class="container pt-4 pb-5 samuraitravel-container">
+               <div class="container pt-4 pb-5 booking_system-container">
                    <div class="row justify-content-center">
                        <div class="col-xl-4 col-lg-5 col-md-7 col-sm-9">
                            <nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -81,12 +81,12 @@
 
                            <!-- 決済機能なしの時のコード -->
                            <form method="post" th:action="@{/reservations/create}" class="d-flex justify-content-center">
-                               <button type="submit" class="btn text-white shadow-sm w-100 samuraitravel-btn">確定する</button>
+                               <button type="submit" class="btn text-white shadow-sm w-100 booking_system-btn">確定する</button>
                            </form>
                            <!-- -->
                            <!-- 決済機能あり時のコード
                            <div class="d-flex justify-content-center">
-                               <button id="paymentButton" class="btn text-white shadow-sm w-100 samuraitravel-btn">決済する</button>
+                               <button id="paymentButton" class="btn text-white shadow-sm w-100 booking_system-btn">決済する</button>
                            </div>
                            -->
                        </div>

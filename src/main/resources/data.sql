@@ -54,8 +54,8 @@ INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, p
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (34, 'カープの家', 'house04.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。カープファン以外お断り。', 9000, 5, '726-0011', '広島県府中市広谷町X-XX-XX', '012-345-678');
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (35, '下関の宿', 'house05.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 10000, 6, '750-0451', '山口県下関市豊田町阿座上X-XX-XX', '012-345-678');
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (36, 'ペンション 徳島', 'house06.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 6000, 2, '778-0004', '徳島県三好市池田町X-XX-XX', '012-345-678');
-INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (37, 'さむらい荘', 'house07.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 7000, 3, '762-0067', '香川県坂出市瀬居町X-XX-XX', '012-345-678');
-INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (38, 'ゲストハウス KAGAWA', 'house08.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 8000, 4, '792-0828', '愛媛県新居浜市松原町X-XX-XX', '012-345-678');
+INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (37, 'KAGAWA荘', 'house07.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 7000, 3, '762-0067', '香川県坂出市瀬居町X-XX-XX', '012-345-678');
+INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (38, 'ゲストハウス 愛媛', 'house08.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 8000, 4, '792-0828', '愛媛県新居浜市松原町X-XX-XX', '012-345-678');
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (39, '四万十川屋', 'house09.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 9000, 5, '787-1323', '高知県四万十市西土佐中半X-XX-XX', '012-345-678');
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (40, '民宿 Fukuoka', 'house10.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 10000, 6, '835-0018', '福岡県みやま市瀬高町高柳X-XX-XX', '012-345-678');
 INSERT IGNORE INTO houses (id, name, image_name, description, price, capacity, postal_code, address, phone_number) VALUES (41, 'SAGAハイツ', 'house01.jpg', '最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。', 6000, 2, '840-0213', '佐賀県佐賀市大和町久留間X-XX-XX', '012-345-678');
@@ -115,7 +115,7 @@ INSERT IGNORE INTO faqs (id, question, answer) VALUES (20, '会員情報を変�
 INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (1, 1, 1, 5, '素晴らしい滞在でした。また利用したいです。');
 INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (2, 1, 2, 4, '部屋が綺麗で、快適に過ごせました。');
 INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (3, 1, 3, 4, 'アクセスが良く、観光に最適でした。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (4, 1, 4, 5, 'スタッフが親切で、気持ちよく滞在できました。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (4, 1, 4, 5, 'The place was breathtaking!');
 INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (5, 1, 5, 4, '駅から近く、便利でした。');
 INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (6, 1, 6, 5, '周辺の飲食店が充実していて、楽しめました。');
 INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (7, 1, 7, 4, '宿泊費が手頃で、コストパフォーマンスが良かったです。');

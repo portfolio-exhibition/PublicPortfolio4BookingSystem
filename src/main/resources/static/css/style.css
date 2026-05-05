@@ -35,109 +35,109 @@ footer {
  background-color: #f2f0eb;
 }
 
-.samuraitravel-wrapper {
+.booking_system-wrapper {
  min-height: 100vh;
  position: relative;
  padding-bottom: 60px;
  box-sizing: border-box;
 }
 
-.samuraitravel-navbar {
+.booking_system-navbar {
  min-height: 60px;
 }
 
-.samuraitravel-logo {
+.booking_system-logo {
  height: 30px;
 }
 
-.samuraitravel-btn {
+.booking_system-btn {
   background-color: #5196a6 !important;
   transition: 0.1s;
 }
 
-.samuraitravel-btn:hover {
+.booking_system-btn:hover {
   opacity: 0.8;
 }
 
-.samuraitravel-dropdown-item:active {
+.booking_system-dropdown-item:active {
   background-color: #5196a6;
 }
 
-.samuraitravel-page-link {
+.booking_system-page-link {
   color: #5196a6;
 }
 
-.samuraitravel-page-link:hover {
+.booking_system-page-link:hover {
   color: #407784;
 }
 
-.samuraitravel-active {
+.booking_system-active {
   background-color: #5196a6 !important;
   border-color: #5196a6 !important;
 }
 
-.samuraitravel-pre-wrap {
+.booking_system-pre-wrap {
   /* 改行文字で行を折り返す */
   white-space: pre-wrap;
 }
 
-.samuraitravel-link-danger {
+.booking_system-link-danger {
   color: #f2594b;
 }
 
-.samuraitravel-link-danger:hover {
+.booking_system-link-danger:hover {
   color: #a63c3c;
 }
 
-.samuraitravel-btn-danger {
+.booking_system-btn-danger {
   background-color: #f2594b !important;
   transition: 0.1s;
 }
 
-.samuraitravel-btn-danger:hover {
+.booking_system-btn-danger:hover {
   opacity: 0.8;
 }
 
-.samuraitravel-card-link {
+.booking_system-card-link {
   transition: 0.3s;
 }
 
-.samuraitravel-card-link:hover {
+.booking_system-card-link:hover {
   opacity: 0.7;
 }
 
-.samuraitravel-horizontal-card-image {
+.booking_system-horizontal-card-image {
   width: 100%;
   height: 240px;
   object-fit: cover;
 }
 
-.samuraitravel-sort-box {
+.booking_system-sort-box {
   width: 150px;
 }
 
-.samuraitravel-vertical-card-image {
+.booking_system-vertical-card-image {
   width: 100%;
   height: 150px;
   object-fit: cover;
 }
 
-.samuraitravel-search-form {
+.booking_system-search-form {
   max-width: 300px;
 }
 
-.samuraitravel-swiper {
+.booking_system-swiper {
   width: 100%;
   height: 480px;
 }
 
-.samuraitravel-swiper img {
+.booking_system-swiper img {
   width: 100%;
   height: 480px;
   object-fit: cover;
 }
 
-.samuraitravel-overlay-background {
+.booking_system-overlay-background {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -145,11 +145,11 @@ footer {
   z-index: 10;
 }
 
-.samuraitravel-overlay-text {
+.booking_system-overlay-text {
   padding: 0 70px;
 }
 
-.samuraitravel-catchphrase-heading {
+.booking_system-catchphrase-heading {
   font-size: 36px;
   line-height: 1.5;
   font-family: 'Noto Serif JP', serif;
@@ -157,7 +157,7 @@ footer {
   text-shadow: 0.25rem 0.25rem 1rem rgb(0 0 0 / 60%);
 }
 
-.samuraitravel-catchphrase-paragraph {
+.booking_system-catchphrase-paragraph {
   font-size: 16px;
   line-height: 2;
   font-family: 'Noto Serif JP', serif;
@@ -165,25 +165,25 @@ footer {
   text-shadow: 0.25rem 0.25rem 1rem rgb(0 0 0 / 60%);
 }
 
-.samuraitravel-accordion-body:hover {
+.booking_system-accordion-body:hover {
   background-color: #f8f9fa;
 }
 
-.samuraitravel-accordion-body:active {
+.booking_system-accordion-body:active {
   background-color: #5196a6;
   color: #ffffff;
 }
 
-.samuraitravel-star {
+.booking_system-star {
   color: #ffa500;
 } 
 
-.samuraitravel-star:focus {
+.booking_system-star:focus {
   color: #ffa500;
 }
 
 @media screen and (min-width: 1400px) {
- .samuraitravel-container {
+ .booking_system-container {
    max-width: 1200px;
  }
 }
