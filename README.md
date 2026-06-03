@@ -1,2 +1,29 @@
 # 宿泊施設の検索および予約システム
-![構成図](https://github.com/portfolio-exhibition/accommodation_search_and_booking_system/blob/readme_asset/README_Asset/%E6%A7%8B%E6%88%90%E5%9B%B3_r1.png)
+## 構成図
+![構成図](README_Asset/構成図.png)
+
+## 用語の定義
+|用語|意味|
+|---|---|
+|会員|サイト登録済みユーザー|
+|非会員|サイト非登録ユーザー|
+|管理者|サイトを管理するユーザー|
+
+## ユースケース図
+![ユースケース図](README_Asset/ユースケース図.png)
+
+## 機能要件
+![機能要件](README_Asset/機能要件.png)
+
+## 非機能要件
+![非機能要件](README_Asset/非機能要件.png)
+
+## 画面遷移図
+![画面遷移図](README_Asset/画面遷移図.png)
+
+## ER 図
+![ ER 図](README_Asset/BookingSystem_ER図.png)
+
+## シーケンス図
+### 会員登録
+![会員登録](README_Asset/会員登録_シーケンス図.png)
