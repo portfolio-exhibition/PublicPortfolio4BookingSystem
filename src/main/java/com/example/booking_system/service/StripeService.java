@@ -1,7 +1,7 @@
 package com.example.booking_system.service;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
+//import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value; //application.properties から読み込む場合に必要
@@ -52,11 +52,11 @@ public class StripeService {
     private String stripeCancelUrl; 
     
     private final HouseRepository houseRepository;
-    private final ReservationService reservationService;
+    //private final ReservationService reservationService;
 
     public StripeService(HouseRepository houseRepository, ReservationService reservationService) {
         this.houseRepository = houseRepository;
-        this.reservationService = reservationService;
+        //this.reservationService = reservationService;
     }
 
     // 依存性の注入後に一度だけ実行するメソッド
@@ -165,7 +165,7 @@ public class StripeService {
                 session = Session.retrieve(session.getId(), sessionRetrieveParams, null);
                 
                 // 詳細なセッション情報からメタデータ（予約情報）を取り出す
-                Map<String, String> sessionMetadata = session.getPaymentIntentObject().getMetadata();
+                //Map<String, String> sessionMetadata = session.getPaymentIntentObject().getMetadata();
 
                 // 予約情報をデータベースに登録する
                 //reservationService.createReservation(sessionMetadata);   決済機能ありの場合はコメントアウトを解除
