@@ -17,6 +17,7 @@ import com.example.booking_system.form.UserEditForm;
 import com.example.booking_system.security.UserDetailsImpl;
 import com.example.booking_system.service.UserService;
 
+//コントローラー
 @Controller
 @RequestMapping("/user")
 public class UserController {
