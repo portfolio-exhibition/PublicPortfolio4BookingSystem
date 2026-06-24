@@ -54,6 +54,7 @@ public class UserService {
         user.setAddress(userEditForm.getAddress());
         user.setPhoneNumber(userEditForm.getPhoneNumber());
         user.setEmail(userEditForm.getEmail());
+        user.setPassword(passwordEncoder.encode(userEditForm.getPassword()));
 
         userRepository.save(user);
     }

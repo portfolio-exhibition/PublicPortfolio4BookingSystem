@@ -17,6 +17,7 @@ import com.example.booking_system.form.UserEditForm;
 import com.example.booking_system.security.UserDetailsImpl;
 import com.example.booking_system.service.UserService;
 
+//コントローラー
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -38,8 +39,7 @@ public class UserController {
     @GetMapping("/edit")
     public String edit(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
         User user = userDetailsImpl.getUser();
-        UserEditForm userEditForm = new UserEditForm(user.getName(), user.getFurigana(), user.getPostalCode(), user.getAddress(), user.getPhoneNumber(), user.getEmail());
-
+        UserEditForm userEditForm = new UserEditForm(user.getName(), user.getFurigana(), user.getPostalCode(), user.getAddress(), user.getPhoneNumber(), user.getEmail(), user.getPassword(), "");
         model.addAttribute("userEditForm", userEditForm);
 
         return "user/edit";
@@ -57,6 +57,12 @@ public class UserController {
         // メールアドレスが変更されており、かつ登録済みであれば、BindingResultオブジェクトにエラー内容を追加する
         if (userService.isEmailChanged(userEditForm, user) && userService.isEmailRegistered(userEditForm.getEmail())) {
             FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "すでに登録済みのメールアドレスです。");
+            bindingResult.addError(fieldError);
+        }
+        
+        // パスワードとパスワード（確認用）の入力値が一致しなければ、BindingResultオブジェクトにエラー内容を追加する
+        if (!userService.isSamePassword(userEditForm.getPassword(), userEditForm.getPasswordConfirmation())) {
+            FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
             bindingResult.addError(fieldError);
         }
 
