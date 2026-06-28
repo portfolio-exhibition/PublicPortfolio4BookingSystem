@@ -59,6 +59,13 @@ public class UserService {
         userRepository.save(user);
     }
     
+    // 退会処理
+    @Transactional
+    public void deactivateAccount(User user){
+    	user.setEnabled(false);   // 当該ユーザーのアカウントを無効化
+    	userRepository.save(user);
+    }
+    
     // メールアドレスが登録済みかどうかをチェックする
     // メールアドレス登録済みであれば true を返し、変数 user が null、メールアドレスが未登録であれば false を返す
     public boolean isEmailRegistered(String email) {

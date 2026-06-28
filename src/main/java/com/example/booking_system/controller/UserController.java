@@ -1,6 +1,9 @@
 package com.example.booking_system.controller;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,9 @@ import com.example.booking_system.entity.User;
 import com.example.booking_system.form.UserEditForm;
 import com.example.booking_system.security.UserDetailsImpl;
 import com.example.booking_system.service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 //コントローラー
 @Controller
@@ -77,4 +83,26 @@ public class UserController {
 
         return "redirect:/user";
     }
+    
+    @PostMapping("/cancelMembership")
+    public String cancelMembership(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, HttpServletRequest request, HttpServletResponse response) {
+    	
+    	User user = userDetailsImpl.getUser();    	
+    	
+    	// 退会処理を Service に依頼
+		userService.deactivateAccount(user);
+		
+		// 現在の認証情報を取得
+		Authentication authentication =
+		SecurityContextHolder.getContext().getAuthentication();
+		
+		// ログアウト処理
+		if (authentication != null) {
+		new SecurityContextLogoutHandler()
+		     .logout(request, response, authentication);
+		}
+		
+		// トップページへ
+		return "redirect:/";
+	}
 }
