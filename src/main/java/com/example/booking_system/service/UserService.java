@@ -63,6 +63,8 @@ public class UserService {
     @Transactional
     public void cancelMenbership(User user){
     	System.out.println("退会処理を実行");
+    	user.setEnabled(false);   // 当該ユーザーのアカウントを無効化
+    	userRepository.save(user);
     }
     
     // メールアドレスが登録済みかどうかをチェックする
