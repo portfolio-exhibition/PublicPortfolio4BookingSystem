@@ -59,6 +59,12 @@ public class UserService {
         userRepository.save(user);
     }
     
+    // 退会処理
+    @Transactional
+    public void cancelMenbership(User user){
+    	System.out.println("退会処理を実行");
+    }
+    
     // メールアドレスが登録済みかどうかをチェックする
     // メールアドレス登録済みであれば true を返し、変数 user が null、メールアドレスが未登録であれば false を返す
     public boolean isEmailRegistered(String email) {
