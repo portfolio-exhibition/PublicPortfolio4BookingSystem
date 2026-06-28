@@ -84,15 +84,13 @@ public class UserController {
         return "redirect:/user";
     }
     
-    @PostMapping("/cancel")
-    public String cancel(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, HttpServletRequest request, HttpServletResponse response) {
+    @PostMapping("/cancelMembership")
+    public String cancelMembership(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, HttpServletRequest request, HttpServletResponse response) {
     	
     	User user = userDetailsImpl.getUser();    	
-    	System.out.println("user:" + user);
     	
-    	System.out.println("UserService に退会処理を依頼");
-    	// 退会処理
-		userService.cancelMenbership(user);
+    	// 退会処理を Service に依頼
+		userService.deactivateAccount(user);
 		
 		// 現在の認証情報を取得
 		Authentication authentication =

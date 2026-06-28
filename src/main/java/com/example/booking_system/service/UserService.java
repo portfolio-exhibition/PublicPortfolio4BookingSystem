@@ -61,8 +61,7 @@ public class UserService {
     
     // 退会処理
     @Transactional
-    public void cancelMenbership(User user){
-    	System.out.println("退会処理を実行");
+    public void deactivateAccount(User user){
     	user.setEnabled(false);   // 当該ユーザーのアカウントを無効化
     	userRepository.save(user);
     }
