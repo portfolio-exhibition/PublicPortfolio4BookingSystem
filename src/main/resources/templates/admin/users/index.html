@@ -26,6 +26,18 @@
                                    </div>
                                </form>
                            </div>
+                           <div>
+							   <form id="csvform" method="post" th:action="@{/export/csv}" th:object="${csvForm}">
+						           <div th:each="asset:${assets}">
+						               <input type="hidden" name="id" th:value="${asset.id}" />
+						               <input type="hidden" name="categoryId" th:value="${asset.categoryId}" />
+						               <input type="hidden" name="adminName" th:value="${asset.adminName}" />
+						               <input type="hidden" name="assetName" th:value="${asset.assetName}" />
+						               <input type="hidden" name="remarks" th:value="${asset.remarks}" />
+						           </div>
+						           <button type="submit">CSV Export</button>
+						       </form>
+						   </div>
                            
                            <div th:if="${errorMessage}" class="alert alert-danger">
                                 <span th:text="${errorMessage}"></span>
