@@ -23,21 +23,21 @@ public class ExportDTO {
 	@JsonProperty("住所")
 	private String address;
 	
-	@JsonProperty("電話番号")
-	private String phoneNumber;
+	//@JsonProperty("電話番号")
+	//private String phoneNumber;
 
-	@JsonProperty("メールアドレス")
-	private String email;
+	//@JsonProperty("メールアドレス")
+	//private String email;
 	
 	ExportDTO () {}
 	
-	public ExportDTO (Integer id, String name, String furigana, String postalCode, String address, String phoneNumber, String email) {
+	public ExportDTO (Integer id, String name, String furigana, String postalCode, String address/*, String phoneNumber, String email*/) {
 	    this.id = id;
 	    this.name = name;
 	    this.furigana = furigana;
 	    this.postalCode = postalCode;
 	    this.address = address;
-	    this.phoneNumber = phoneNumber;
-	    this.email = email;
+	    //this.phoneNumber = phoneNumber;
+	    //this.email = email;
 	}
 }

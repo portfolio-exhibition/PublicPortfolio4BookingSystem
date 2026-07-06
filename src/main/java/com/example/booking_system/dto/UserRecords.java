@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class ExportRecords {
+public class UserRecords {
 	List<Integer> id;
 
 	List<String> name;
@@ -16,7 +16,7 @@ public class ExportRecords {
 
 	List<String> address;
 	
-	List<String> phoneNumber;
+	//List<String> phoneNumber;
 
-	List<String> email;
+	//List<String> email;
 }
