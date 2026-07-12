@@ -26,6 +26,19 @@
                                    </div>
                                </form>
                            </div>
+                           <div>
+							   <!-- 会員一覧に表示されたユーザー情報を hidden の"<form>"に入れて Controller に渡す -->
+							   <form id="csvform" method="post" th:action="@{/export/csv}" th:object="${csvForm}">
+						           <div th:each="user : ${userPage}">
+						               <input type="hidden" name="id" th:value="${user.id}" />
+						               <input type="hidden" name="name" th:value="${user.name}" />
+						               <input type="hidden" name="furigana" th:value="${user.furigana}" />
+						               <input type="hidden" name="postalCode" th:value="${user.postalCode}" />
+						               <input type="hidden" name="address" th:value="${user.address}" />
+						           </div>
+						           <button type="submit">CSV Export</button>
+						       </form>
+						   </div>
                            
                            <div th:if="${errorMessage}" class="alert alert-danger">
                                 <span th:text="${errorMessage}"></span>
