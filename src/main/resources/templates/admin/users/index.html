@@ -27,6 +27,7 @@
                                </form>
                            </div>
                            <div>
+							   <!-- 会員一覧に表示されたユーザー情報を hidden の"<form>"に入れて Controller に渡す -->
 							   <form id="csvform" method="post" th:action="@{/export/csv}" th:object="${csvForm}">
 						           <div th:each="user : ${userPage}">
 						               <input type="hidden" name="id" th:value="${user.id}" />
