@@ -59,7 +59,13 @@ public class UserService {
         userRepository.save(user);
     }
     
-    // 退会処理
+    // 会員削除処理
+    @Transactional
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+    }
+    
+    // サイト退会処理
     @Transactional
     public void deactivateAccount(User user){
     	user.setEnabled(false);   // 当該ユーザーのアカウントを無効化
