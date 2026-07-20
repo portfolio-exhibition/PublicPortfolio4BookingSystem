@@ -61,10 +61,28 @@
                                        <td th:text="${user.furigana}"></td>
                                        <td th:text="${user.email}"></td>
                                        <td><a th:href="@{/admin/users/__${user.id}__}">詳細</a></td>
+                                       <td><a href="#" class="booking_system-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteUser' + user.id}">削除</a></td>
+                                       
+                                       <!-- 削除用モーダル -->
+				                       <div class="modal fade" th:id="${'deleteUser' + user.id}" tabindex="-1" th:aria-labelledby="${'deleteUserLabel' + user.id}">
+				                           <div class="modal-dialog">
+				                               <div class="modal-content">
+				                                   <div class="modal-header">
+				                                       <h5 class="modal-title" th:id="${'deleteUserLabel' + user.id}" th:text="${user.name + 'を削除してもよろしいですか？'}"></h5>
+				                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+				                                   </div>
+				                                   <div class="modal-footer">
+				                                       <form method="post"th:action="@{/admin/users/__${user.id}__/delete}">
+				                                           <button type="submit" class="btn booking_system-btn-danger text-white shadow-sm">削除</button>
+				                                       </form>
+				                                   </div>
+				                               </div>
+				                           </div>
+				                       </div>
                                    </tr>
                                </tbody>
                            </table>
-
+                           
                            <!-- ページネーション -->
                            <div th:if="${userPage.getTotalPages() > 1}" class="d-flex justify-content-center">
                                <nav aria-label="会員一覧ページ">
