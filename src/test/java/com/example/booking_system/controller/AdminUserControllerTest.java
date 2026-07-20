@@ -26,14 +26,14 @@ public class AdminUserControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void 一般ユーザーとしてログイン済みの場合は管理者用の会員一覧ページが表示されずに403エラーが発生する() throws Exception {
         mockMvc.perform(get("/admin/users"))
                .andExpect(status().isForbidden());
     }
 
     @Test
-    @WithUserDetails("hanako.samurai@example.com")
+    @WithUserDetails("admin@example.com")
     public void 管理者としてログイン済みの場合は管理者用の会員一覧ページが正しく表示される() throws Exception {
         mockMvc.perform(get("/admin/users"))
                .andExpect(status().isOk())
@@ -48,14 +48,14 @@ public class AdminUserControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void 一般ユーザーとしてログイン済みの場合は管理者用の会員詳細ページが表示されずに403エラーが発生する() throws Exception {
         mockMvc.perform(get("/admin/users/1"))
                .andExpect(status().isForbidden());
     }
 
     @Test
-    @WithUserDetails("hanako.samurai@example.com")
+    @WithUserDetails("admin@example.com")
     public void 管理者としてログイン済みの場合は管理者用の会員詳細ページが正しく表示される() throws Exception {
         mockMvc.perform(get("/admin/users/1"))
                .andExpect(status().isOk())

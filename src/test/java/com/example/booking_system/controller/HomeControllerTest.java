@@ -26,7 +26,7 @@ public class HomeControllerTest {
     }
     
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void ログイン済みの場合はトップページが正しく表示される() throws Exception {
         mockMvc.perform(get("/"))
                .andExpect(status().isOk())

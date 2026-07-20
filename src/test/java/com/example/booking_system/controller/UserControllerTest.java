@@ -35,7 +35,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void ログイン済みの場合は会員用の会員詳細ページが正しく表示される() throws Exception {
         mockMvc.perform(get("/user"))
                .andExpect(status().isOk())
@@ -50,7 +50,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void ログイン済みの場合は会員用の会員編集ページが正しく表示される() throws Exception {
         mockMvc.perform(get("/user/edit"))
                .andExpect(status().isOk())
@@ -73,10 +73,10 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     @Transactional
     public void ログイン済みの場合は会員更新後に会員用の会員詳細ページにリダイレクトする() throws Exception {
-        User user = userService.findUserByEmail("taro.samurai@example.com");
+        User user = userService.findUserByEmail("general@example.com");
 
         mockMvc.perform(post("/user/update")
                 .with(csrf())
@@ -85,7 +85,9 @@ public class UserControllerTest {
                 .param("postalCode", "000-0000")
                 .param("address", "テスト住所")
                 .param("phoneNumber", "000-000-000")
-                .param("email", "test@example.com"))
+                .param("email", "test@example.com")
+                .param("password", "password")
+                .param("passwordConfirmation", "password"))
             .andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/user"));
 

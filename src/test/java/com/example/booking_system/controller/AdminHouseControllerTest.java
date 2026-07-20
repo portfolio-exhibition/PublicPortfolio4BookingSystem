@@ -47,14 +47,14 @@ public class AdminHouseControllerTest {
    }
 
    @Test
-   @WithUserDetails("taro.samurai@example.com")
+   @WithUserDetails("general@example.com")
    public void 一般ユーザーとしてログイン済みの場合は管理者用の民宿一覧ページが表示されずに403エラーが発生する() throws Exception {
        mockMvc.perform(get("/admin/houses"))
               .andExpect(status().isForbidden());
    }
 
    @Test
-   @WithUserDetails("hanako.samurai@example.com")
+   @WithUserDetails("admin@example.com")
    public void 管理者としてログイン済みの場合は管理者用の民宿一覧ページが正しく表示される() throws Exception {
        mockMvc.perform(get("/admin/houses"))
               .andExpect(status().isOk())
@@ -69,14 +69,14 @@ public class AdminHouseControllerTest {
    }
 
    @Test
-   @WithUserDetails("taro.samurai@example.com")
+   @WithUserDetails("general@example.com")
    public void 一般ユーザーとしてログイン済みの場合は管理者用の民宿詳細ページが表示されずに403エラーが発生する() throws Exception {
        mockMvc.perform(get("/admin/houses/1"))
               .andExpect(status().isForbidden());
    }
 
    @Test
-   @WithUserDetails("hanako.samurai@example.com")
+   @WithUserDetails("admin@example.com")
    public void 管理者としてログイン済みの場合は管理者用の民宿詳細ページが正しく表示される() throws Exception {
        mockMvc.perform(get("/admin/houses/1"))
               .andExpect(status().isOk())
@@ -91,14 +91,14 @@ public class AdminHouseControllerTest {
 	}
 	
 	@Test
-	@WithUserDetails("taro.samurai@example.com")
+	@WithUserDetails("general@example.com")
 	public void 一般ユーザーとしてログイン済みの場合は管理者用の民宿登録ページが表示されずに403エラーが発生する() throws Exception {
 	    mockMvc.perform(get("/admin/houses/register"))
 	           .andExpect(status().isForbidden());
 	}
 	
 	@Test
-	@WithUserDetails("hanako.samurai@example.com")
+	@WithUserDetails("admin@example.com")
 	public void 管理者としてログイン済みの場合は管理者用の民宿登録ページが正しく表示される() throws Exception {
 	    mockMvc.perform(get("/admin/houses/register"))
 	           .andExpect(status().isOk())
@@ -144,7 +144,7 @@ public class AdminHouseControllerTest {
 	}
 	
 	@Test
-	@WithUserDetails("taro.samurai@example.com")
+	@WithUserDetails("general@example.com")
 	@Transactional
 	public void 一般ユーザーとしてログイン済みの場合は民宿を登録せずに403エラーが発生する() throws Exception {
 	    // テスト前のレコード数を取得する
@@ -182,7 +182,7 @@ public class AdminHouseControllerTest {
 	}
 	
 	@Test
-	@WithUserDetails("hanako.samurai@example.com")
+	@WithUserDetails("admin@example.com")
 	@Transactional
 	public void 管理者としてログイン済みの場合は民宿登録後に民宿一覧ページにリダイレクトする() throws Exception {
 	    // テスト前のレコード数を取得する
@@ -237,14 +237,14 @@ public class AdminHouseControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void 一般ユーザーとしてログイン済みの場合は管理者用の民宿編集ページが表示されずに403エラーが発生する() throws Exception {
         mockMvc.perform(get("/admin/houses/1/edit"))
                .andExpect(status().isForbidden());
     }
 
     @Test
-    @WithUserDetails("hanako.samurai@example.com")
+    @WithUserDetails("admin@example.com")
     public void 管理者としてログイン済みの場合は管理者用の民宿編集ページが正しく表示される() throws Exception {
         mockMvc.perform(get("/admin/houses/1/edit"))
                .andExpect(status().isOk())
@@ -282,7 +282,7 @@ public class AdminHouseControllerTest {
         Optional<House> optionalHouse = houseService.findHouseById(1);
         assertThat(optionalHouse).isPresent();
         House house = optionalHouse.get();
-        assertThat(house.getName()).isEqualTo("SAMURAIの宿");
+        assertThat(house.getName()).isEqualTo("北海の宿");
         assertThat(house.getDescription()).isEqualTo("最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。");
         assertThat(house.getPrice()).isEqualTo(6000);
         assertThat(house.getCapacity()).isEqualTo(2);
@@ -292,7 +292,7 @@ public class AdminHouseControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     @Transactional
     public void 一般ユーザーとしてログイン済みの場合は民宿を更新せずに403エラーが発生する() throws Exception {
         // テスト用の画像ファイルデータを準備する
@@ -322,7 +322,7 @@ public class AdminHouseControllerTest {
         Optional<House> optionalHouse = houseService.findHouseById(1);
         assertThat(optionalHouse).isPresent();
         House house = optionalHouse.get();
-        assertThat(house.getName()).isEqualTo("SAMURAIの宿");
+        assertThat(house.getName()).isEqualTo("北海の宿");
         assertThat(house.getDescription()).isEqualTo("最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。");
         assertThat(house.getPrice()).isEqualTo(6000);
         assertThat(house.getCapacity()).isEqualTo(2);
@@ -332,7 +332,7 @@ public class AdminHouseControllerTest {
     }
 
     @Test
-    @WithUserDetails("hanako.samurai@example.com")
+    @WithUserDetails("admin@example.com")
     @Transactional
     public void 管理者としてログイン済みの場合は民宿更新後に民宿詳細ページにリダイレクトする() throws Exception {
         // テスト用の画像ファイルデータを準備する
@@ -384,7 +384,7 @@ public class AdminHouseControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     @Transactional
     public void 一般ユーザーとしてログイン済みの場合は民宿を削除せずに403エラーが発生する() throws Exception {
         mockMvc.perform(post("/admin/houses/1/delete").with(csrf()))
@@ -395,7 +395,7 @@ public class AdminHouseControllerTest {
     }
 
     @Test
-    @WithUserDetails("hanako.samurai@example.com")
+    @WithUserDetails("admin@example.com")
     @Transactional
     public void 管理者としてログイン済みの場合は民宿削除後に民宿一覧ページにリダイレクトする() throws Exception {
         mockMvc.perform(post("/admin/houses/1/delete").with(csrf()))

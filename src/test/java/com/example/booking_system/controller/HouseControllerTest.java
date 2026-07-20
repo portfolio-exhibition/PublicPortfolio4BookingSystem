@@ -26,7 +26,7 @@ public class HouseControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void ログイン済みの場合は会員用の民宿一覧ページが正しく表示される() throws Exception {
         mockMvc.perform(get("/houses"))
                .andExpect(status().isOk())
@@ -41,7 +41,7 @@ public class HouseControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void ログイン済みの場合は会員用の民宿詳細ページが正しく表示される() throws Exception {
         mockMvc.perform(get("/houses/1"))
                .andExpect(status().isOk())

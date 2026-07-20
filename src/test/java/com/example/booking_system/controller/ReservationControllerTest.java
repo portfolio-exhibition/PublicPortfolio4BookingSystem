@@ -40,7 +40,7 @@ public class ReservationControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void ログイン済みの場合は会員用の予約一覧ページが正しく表示される() throws Exception {
         mockMvc.perform(get("/reservations"))
                .andExpect(status().isOk())
@@ -58,7 +58,7 @@ public class ReservationControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void ログイン済みの場合は予約フォームの送信後に予約内容の確認ページにリダイレクトする() throws Exception {
         mockMvc.perform(post("/houses/1/reservations/input").with(csrf())
                 .param("checkinDate", "2024-04-01")
@@ -90,7 +90,7 @@ public class ReservationControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     public void ログイン済みの場合は予約内容の確認ページが正しく表示される() throws Exception {
         // セッションを作成し、ReservationDTOオブジェクトを保存する
         MockHttpSession mockHttpSession = new MockHttpSession();
@@ -128,7 +128,7 @@ public class ReservationControllerTest {
     }
 
     @Test
-    @WithUserDetails("taro.samurai@example.com")
+    @WithUserDetails("general@example.com")
     @Transactional
     public void ログイン済みの場合は予約後に会員用の予約一覧ページにリダイレクトする() throws Exception {
         // テスト前のレコード数を取得する
@@ -152,7 +152,7 @@ public class ReservationControllerTest {
 
         Reservation reservation = reservationService.findFirstReservationByOrderByIdDesc();
         assertThat(reservation.getHouse().getId()).isEqualTo(1);
-        assertThat(reservation.getUser().getEmail()).isEqualTo("taro.samurai@example.com");
+        assertThat(reservation.getUser().getEmail()).isEqualTo("general@example.com");
         assertThat(reservation.getCheckinDate()).isEqualTo("2024-04-01");
         assertThat(reservation.getCheckoutDate()).isEqualTo("2024-04-02");
         assertThat(reservation.getNumberOfPeople()).isEqualTo(1);
