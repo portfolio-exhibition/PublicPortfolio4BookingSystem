@@ -22,9 +22,9 @@ class CsvCreateServiceTest {
     private CsvCreateService csvCreateService;
 
     @Test
-    void CSVを正常に作成できる() throws Exception {
+    void CSVを正常に生成できる() throws Exception {
 
-        // Arrange
+        // CSV に出力するデータの作成
         UserRecords records = new UserRecords();
 
         records.setId(List.of(1));
@@ -33,28 +33,28 @@ class CsvCreateServiceTest {
         records.setPostalCode(List.of("123-4567"));
         records.setAddress(List.of("東京都新宿区"));
 
-        // Act
+        // データを CsvCreateService のメソッドに渡し、CSV を作成、戻り値の byte で受け取る
         byte[] result = csvCreateService.createCsv(records);
 
-        // Assert
+        // Null チェック
         assertNotNull(result);
 
-        // BOM確認
+        // UTF-8 BOM であることの確認
         assertEquals((byte) 0xEF, result[0]);
         assertEquals((byte) 0xBB, result[1]);
         assertEquals((byte) 0xBF, result[2]);
 
-        // BOMを除いて文字列化
+        // BOMを除いて文字列化（上記の先頭３バイトを第２引数の offset でスキップして残りデータを String csv に代入する）
         String csv = new String(result, 3, result.length - 3, StandardCharsets.UTF_8);
 
-        // ヘッダ確認
+        // ヘッダ確認（各カラムの項目名）
         assertTrue(csv.contains("ユーザーID"));
         assertTrue(csv.contains("名前"));
         assertTrue(csv.contains("フリガナ"));
         assertTrue(csv.contains("郵便番号"));
         assertTrue(csv.contains("住所"));
 
-        // データ確認
+        // データ確認（正常に CSV にデータの入力、生成できているか）
         assertTrue(csv.contains("1"));
         assertTrue(csv.contains("山田 太郎"));
         assertTrue(csv.contains("ヤマダ タロウ"));
