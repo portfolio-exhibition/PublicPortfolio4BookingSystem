@@ -17,7 +17,7 @@
 ![機能要件](https://github.com/portfolio-exhibition/accommodation_search_and_booking_system/blob/readme_asset/README_Asset/%E6%A9%9F%E8%83%BD%E8%A6%81%E4%BB%B6.png)
 
 ## 非機能要件
-![非機能要件](https://github.com/portfolio-exhibition/accommodation_search_and_booking_system/blob/readme_asset/README_Asset/%E9%9D%9E%E6%A9%9F%E8%83%BD%E8%A6%81%E4%BB%B6.png)
+ポートフォリオサイトの為、省略
 
 ## 画面遷移図
 ![画面遷移図](https://github.com/portfolio-exhibition/accommodation_search_and_booking_system/blob/readme_asset/README_Asset/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3.png)
