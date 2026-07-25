@@ -41,4 +41,3 @@ build/
 /src/main/resources/application-test.properties
 *.env
 一時退避/
-README_Asset/
