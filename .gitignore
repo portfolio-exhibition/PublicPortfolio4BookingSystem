@@ -39,5 +39,9 @@ build/
 ### Project ###
 /src/main/resources/application.properties
 /src/main/resources/application-test.properties
+/src/main/resources/data.sql
 *.env
+README.Docker.md
+.dockerignore
+compose.yaml
 一時退避/
