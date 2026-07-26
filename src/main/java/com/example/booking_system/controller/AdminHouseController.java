@@ -23,14 +23,7 @@ import com.example.booking_system.form.HouseEditForm;
 import com.example.booking_system.form.HouseRegisterForm;
 import com.example.booking_system.service.HouseService;
 
-/*
-　クラスに@RequestMappingアノテーションをつけることで、ルートパスの基準値を設定することができます。
-　例えば今回のように@RequestMapping("/admin/houses")と指定すれば、
-　このコントローラ内の各メソッドが担当するURLは「https://ドメイン名/admin/houses/○○○」となります。
-　つまり、@RequestMappingアノテーションをつけることで、各メソッドに共通のパス（今回の場合は「/admin/houses」）を繰り返し記述する必要がなくなるということです。
-　index()メソッドの@GetMappingアノテーションにはマッピングするルートパスを指定していませんが、
-　この場合は「/admin/houses」がそのままマッピングされます。
-**/
+
 @Controller
 @RequestMapping("/admin/houses")
 public class AdminHouseController {
@@ -39,24 +32,6 @@ public class AdminHouseController {
     public AdminHouseController(HouseService houseService) {
         this.houseService = houseService;
     }
-
-//    @GetMapping（Service の一覧リスト表示に対応したコード）
-//    public String index(Model model) {
-//        List<House> houses = houseService.findAllHouses();
-//
-//        model.addAttribute("houses", houses);
-//
-//        return "admin/houses/index";
-//    }
-
-//    @GetMapping（旧コード）
-//    public String index(@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable, Model model) {
-//        Page<House> housePage = houseService.findAllHouses(pageable);
-//
-//        model.addAttribute("housePage", housePage);
-//
-//        return "admin/houses/index";
-//    }
     
 	@GetMapping
 	public String index(@RequestParam(name = "keyword", required = false) String keyword,
@@ -65,7 +40,7 @@ public class AdminHouseController {
 	{        
 	    Page<House> housePage;
 	
-	    // keywordパラメータが存在する場合は部分一致検索を行い、そうでなければ通常どおり全件のデータを取得しています。
+	    // keywordパラメータが存在する場合は部分一致検索を行い、そうでなければ通常どおり全件のデータを取得
 	    if (keyword != null && !keyword.isEmpty()) {
 	        housePage = houseService.findHousesByNameLike(keyword, pageable);
 	    } else {
@@ -73,19 +48,11 @@ public class AdminHouseController {
 	    }        
 	
 	    model.addAttribute("housePage", housePage);
-	    model.addAttribute("keyword", keyword);     //ビューにkeyword（文字列）を渡しています。
+	    model.addAttribute("keyword", keyword);     //ビューにkeyword（文字列）を渡す
 	
 	    return "admin/houses/index";
 	}
 	
-	/*　@PathVariableアノテーション
-	　コントローラ内ではメソッドの引数に@PathVariableアノテーションをつけることで、URLの一部をその引数にバインドする（割り当てる）ことができます。
-	　これにより、URLの一部を変数のように扱って、コントローラ内でその値を利用することができます。
-	　（例）https://ドメイン名/admin/houses/3 にアクセスした場合
-	　URLの{id}の部分にある値（3）がshow()メソッドの引数idにバインドされます。
-	　これにより、show()メソッド内ではidの値を利用して処理を行うことができます。
-	　@PathVariableアノテーションのname属性にはバインドさせたいURLの{}内の文字列（今回は/admin/houses/{id}なので、"id"）を指定します。
-	 */
     @GetMapping("/{id}")
     public String show(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes, Model model) {
         Optional<House> optionalHouse  = houseService.findHouseById(id);
@@ -97,11 +64,7 @@ public class AdminHouseController {
             return "redirect:/admin/houses";
         }
 
-        /* Optional型をHouse型に変換する
-        　民宿詳細ページではエンティティの各フィールドにアクセスし、民宿の説明や住所などを表示させます。
-        　しかし、Optional<House>型のままではエンティティの各フィールドに直接アクセスできません。
-        　そこでOptionalクラスのget()メソッドを使い、House型に変換してからビューに渡しています。
-        */
+        // Optional型をHouse型に変換する
         House house = optionalHouse.get();
         model.addAttribute("house", house);
 
@@ -146,9 +109,6 @@ public class AdminHouseController {
         House house = optionalHouse.get();
         
         // フォームクラスをインスタンス化する
-        //更新前の民宿の各フィールドの値を使ってフォームクラスをインスタンス化し、ビューに渡します。
-        //更新前の民宿画像はビュー内でパスを指定して表示するため（<img th:src="@{/storage/__${house.imageName}__}">）、MultipartFile型のファイルを直接渡す必要はありません。
-        //よって、コンストラクタの引数にはnullを指定します。
         HouseEditForm houseEditForm = new HouseEditForm(house.getName(), null, house.getDescription(), house.getPrice(), house.getCapacity(), house.getPostalCode(), house.getAddress(), house.getPhoneNumber());
 
         // 生成したインスタンスをビューに渡す
