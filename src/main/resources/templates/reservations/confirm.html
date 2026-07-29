@@ -25,8 +25,7 @@
                            </nav>
 
                            <h1 class="mb-4 text-center">予約内容確認</h1>
-
-                           <!-- th:object属性はform要素に設定することが多いですが、以下のように他のHTML要素に設定することも可能です。-->
+>
                            <div th:object="${reservationDTO}">
                                <div class="container mb-4">
                                    <div class="row pb-2 mb-2 border-bottom">
@@ -35,8 +34,6 @@
                                        </div>
 
                                        <div class="col">
-										   <!-- 内部のHTML要素（子孫要素）では、form要素と同じようにオブジェクトのフィールド名を*{}で囲むことで、その値を参照できます。-->
-                                           <!-- 今回はth:text属性を使い、フィールドの値を表示しています。 -->
                                            <span th:text="*{checkinDate}"></span>
                                        </div>
                                    </div>

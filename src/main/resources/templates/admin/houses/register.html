@@ -24,10 +24,6 @@
 
                            <h1 class="mb-4 text-center">民宿登録</h1>
 
-                           <!-- form要素にenctype属性を設定する
-							form要素のenctype属性は、フォームの入力内容を送信する際のエンコードタイプを指定するための属性です。
-                            enctype属性に"multipart/form-data"を指定することで、テキストデータだけでなくファイルも一緒に送信できるようになります。
-                           -->
                            <form method="post" th:action="@{/admin/houses/create}" th:object="${houseRegisterForm}" enctype="multipart/form-data">
                                <div class="form-group row mb-3">
                                    <div class="col-md-4">

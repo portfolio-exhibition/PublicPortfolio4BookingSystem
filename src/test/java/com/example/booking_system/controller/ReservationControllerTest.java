@@ -69,8 +69,8 @@ public class ReservationControllerTest {
     }
 
     /* HttpSessionインターフェースをテスト向けに実装したMockHttpSessionクラスを使用する
-       予約内容の確認ページに直接アクセスする場合、正しく表示されることを検証するには、
-       あらかじめReservationDTOオブジェクトがセッションに保存されていなければなりません。
+       予約内容の確認ページに直接アクセスする場合、正しく表示されることを検証する為、
+       あらかじめReservationDTOオブジェクトをセッションに保存する
     */
 	// MockHttpSessionクラスを利用すれば、Spring Bootのテスト内でセッションを作成できる
 	/* perform()メソッドでHTTPリクエスト送信する際にsession()メソッドをつなげ、

@@ -24,11 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.booking_system.entity.House;
 import com.example.booking_system.service.HouseService;
 
-/*
-テストメソッドは一般的に、検証内容がわかるような名前がつけられることが多いです。
-Javaではメソッド名に日本語が使えますが、テストメソッド名を日本語にすることでテスト内容がひと目でわかるというメリットがあります。
-よって、開発者が日本人のみの場合はテストメソッド名を日本語にするケースも多いです。 
-**/
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")

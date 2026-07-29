@@ -26,17 +26,11 @@
 
                            <div class="d-flex justify-content-end align-items-end mb-3">
                                <div>
-                                   <!-- <a href="#">編集</a> ※旧コード -->
                                    <a th:href="@{/admin/houses/__${house.id}__/edit}">編集</a>
                                </div>
                            </div>
 
                            <div class="mb-3">
-							   <!-- src/main/resources/static/storageフォルダ内にテストデータ用の民宿画像ファイルを格納しました。
-							    よって、img要素のth:src属性の値に"@{/storage/ファイル名}"を指定すれば、それらの民宿画像を表示できます。
-							    しかし、ファイル名は民宿データによって異なるので、パス内に変数（ファイル名）を埋め込む必要があります。
-							    パス内に変数を埋め込むにはどうするかというと、Thymeleafでは__${変数}__のように前後をアンダースコア2つで囲みます。
-							   -->
                                <img th:if="${house.imageName}" th:src="@{/storage/__${house.imageName}__}" class="w-100" alt="民宿画像">
                                <img th:unless="${house.imageName}" th:src="@{/images/noImage.png}" class="w-100" alt="NO IMAGE">
                            </div>
@@ -78,8 +72,8 @@
                                    </div>
 
                                    <div class="col">
-									   <!-- 数値を指定したフォーマットに整形する#numbers.formatIntegerというユーティリティオブジェクトを使い、宿泊料金を3桁ずつカンマで区切ります。 -->
-                                       <!-- #numbers.formatIntegerの引数は以下のとおりです。
+									   <!-- 数値を指定したフォーマットに整形する#numbers.formatIntegerというユーティリティオブジェクトを使い、宿泊料金を3桁ずつカンマで区切る -->
+                                       <!-- #numbers.formatIntegerの引数
 										第1引数：整形する整数
 										第2引数：最小桁数（指定した桁数に満たない場合、先頭に0が追加される）
 										第3引数：区切り文字（'COMMA'、'POINT'、'WHITESPACE'など）

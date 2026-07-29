@@ -21,11 +21,6 @@
 						   <div class="d-flex justify-content-between align-items-end flex-wrap">
                                <form method="get" th:action="@{/admin/houses}" class="mb-3">
                                    <div class="input-group">
-									   <!-- th:value属性でフォームの初期値を設定する
-										Thymeleafのth:value属性は、input要素やoption要素などのvalue属性の値を動的に設定するための機能です。
-										以下のように検索フォームのinput要素にth:value属性を使い、コントローラから渡された変数keywordの値を設定しています。
-									    こうすることで、ユーザー側が「どの検索ワードで検索したのか」がわかりやすくなります。
-									   -->
                                        <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="民宿名">
                                        <button type="submit" class="btn text-white shadow-sm booking_system-btn">検索</button>
                                    </div>
@@ -33,18 +28,10 @@
                                <a th:href="@{/admin/houses/register}" class="btn text-white shadow-sm mb-3 booking_system-btn">登録</a>
                            </div>
 
-                           <!--
-							コントローラのcreate()メソッドでは、民宿登録後に管理者用の民宿一覧ページにリダイレクトさせていますが、その際に「民宿を登録しました。」というフラッシュメッセージ（変数successMessage）も渡しています。
-						    そのため、以下で変数successMessageの表示エリアを管理者用の民宿一覧ページに追加しています。
-						   -->
                            <div th:if="${successMessage}" class="alert alert-info">
                                 <span th:text="${successMessage}"></span>
                            </div>
                             
-                           <!--
-							AdminHouseController.java のshow()メソッドでは、民宿が存在しない場合に民宿一覧ページにリダイレクトさせていますが、その際に「民宿が存在しません。」というフラッシュメッセージ（変数errorMessage）も渡しています。
-						    そのため、変数errorMessageの表示エリアを民宿一覧ページに追加する
-						   -->
                            <div th:if="${errorMessage}" class="alert alert-danger">
                                 <span th:text="${errorMessage}"></span>
                            </div>
@@ -61,10 +48,7 @@
                                        <th scope="col"></th>
                                    </tr>
                                </thead>
-                               <!--
-								th:each属性の値は"house : ${houses}"のように、各ループで一時的に代入される変数名（house）と、繰り返し処理を実行したい変数名（houses）を指定します。
-                                なおThymeleafテンプレート内では、${house.id}のようにエンティティのフィールド名を指定することで、自動的にゲッターを使ってそのフィールドの値を取得してくれます。
-                               -->
+
                                <tbody>
 							       <tr th:each="house : ${housePage}">
                                        <td th:text="${house.id}"></td>
@@ -96,11 +80,6 @@
                            </table>
                            
                            <!-- ページネーション -->
-                           <!-- th:href属性の値にkeywordパラメータを追加する
-							ページ移動したときにも検索結果が保持されるように、以下の3箇所(<a th:unless ...)でth:href属性にkeywordパラメータを追加しています。
-						    th:href属性のパラメータは,（カンマ）区切りで複数設定することができます。
-							なお、keywordパラメータを追加しない場合、ページ移動したときにkeywordの値がnullになり、検索結果が失われてしまいます。（通常どおり全件のデータが表示される）
-						   -->
                             <div th:if="${housePage.getTotalPages() > 1}" class="d-flex justify-content-center">
                                 <nav aria-label="民宿一覧ページ">
                                     <ul class="pagination">
