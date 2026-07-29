@@ -23,7 +23,7 @@ import com.example.booking_system.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-//コントローラー
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -102,7 +102,6 @@ public class UserController {
 		     .logout(request, response, authentication);
 		}
 		
-		// トップページへ
 		return "redirect:/";
 	}
 }

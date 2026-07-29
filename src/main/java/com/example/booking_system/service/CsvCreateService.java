@@ -41,8 +41,8 @@ public class CsvCreateService {
 
         // UTF-8 の BOM データである 0xEF, 0xBB, 0xBF の3バイトを書き込む
         // CSVファイルのBOM出力：
-        // ExcelなどでBOMなしのUTF-8 CSVを開くと日本語が文字化けすることがあります。
-        // ファイルの先頭にこのバイト列を書き込むことで、文字化けを防ぐことができます。
+        // ExcelなどでBOMなしのUTF-8 CSVを開くと日本語が文字化けすることがある
+        // ファイルの先頭にこのバイト列を書き込むことで、文字化けを防ぐことができる
         out.write(0xEF);
         out.write(0xBB);
         out.write(0xBF);

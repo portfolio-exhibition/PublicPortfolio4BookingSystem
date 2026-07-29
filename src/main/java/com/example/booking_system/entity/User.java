@@ -45,11 +45,6 @@ public class User {
     @Column(name = "password")
     private String password;
     
-    /*
-    　エンティティではフィールドに以下のようなアノテーションをつけることで、
-    　一対一や一対多、多対多といったリレーションシップを表現することができます
-    　※依存関係に追加したSpring Data JPAの機能
-    **/
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;

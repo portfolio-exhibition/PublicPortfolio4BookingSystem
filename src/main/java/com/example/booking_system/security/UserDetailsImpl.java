@@ -8,11 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.booking_system.entity.User;
 
 
-/* ポイントは以下の3つです。
-　1.UserDetailsインターフェースを実装する
-　2.@Overrideアノテーションで抽象メソッドを上書きする
-　3.isEnabled()メソッドでユーザーの有効性をチェックする
-**/
 public class UserDetailsImpl implements UserDetails {
     private final User user;
     private final Collection<GrantedAuthority> authorities;

@@ -39,8 +39,8 @@ public class AuthController {
     }
     
     @GetMapping("/signup")
-    public String signup(Model model) {                       //ビューにフォームクラスのインスタンスを渡す
-        model.addAttribute("signupForm", new SignupForm());   //Modelクラスを使ってビューにデータを渡す
+    public String signup(Model model) {
+        model.addAttribute("signupForm", new SignupForm());
         return "auth/signup";
     }
     

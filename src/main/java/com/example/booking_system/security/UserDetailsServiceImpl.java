@@ -13,13 +13,7 @@ import org.springframework.stereotype.Service;
 import com.example.booking_system.entity.User;
 import com.example.booking_system.repository.UserRepository;
 
-/* ポイントは以下の5つです。
-1.クラスに@Serviceアノテーションをつける
-2.UserDetailsServiceインターフェースを実装する
-3.コンストラクタで依存性の注入（DI）を行う（コンストラクタインジェクション）
-4.loadUserByUsername()メソッドを上書きする
-5.UserDetailsImplクラスのインスタンスを生成する
-**/
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
@@ -29,12 +23,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    /* UserDetailsServiceImplクラスの役割は、UserDetailsImplクラスのインスタンスを生成することです。
-       loadUserByUsername()メソッド内では以下の処理をおこなっています。
-	1.フォームから送信されたメールアドレスに一致するユーザーを取得する
-	2.そのユーザーのロールを取得する
-	3.上記2つの情報をUserDetailsImplクラスのコンストラクタに渡し、インスタンスを生成する 
-    **/
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         try {

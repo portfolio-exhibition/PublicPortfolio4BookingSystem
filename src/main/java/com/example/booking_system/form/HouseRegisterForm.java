@@ -13,7 +13,7 @@ public class HouseRegisterForm {
     @NotBlank(message = "民宿名を入力してください。")
     private String name;
 
-    // 民宿画像のフィールドはMultipartFile型で定義する
+    // 民宿画像のフィールドはSpring/Spring Boot 標準の MultipartFile 型で定義、オブジェクトとして扱えて実装が楽
     private MultipartFile imageFile;
 
     @NotBlank(message = "説明を入力してください。")

@@ -39,24 +39,21 @@ public class StripeService {
     private static final Mode MODE = SessionCreateParams.Mode.PAYMENT;  // 支払いモード
     private static final DateTimeFormatter DATE_TIME_FORMATTER  = DateTimeFormatter.ofPattern("yyyy-MM-dd");  // 日付のフォーマット
 
-    // Stripeのシークレットキー、application.properties から読み込む
     @Value("${stripe.api-key}")
     private String stripeApiKey;
     
-    // 決済成功時のリダイレクト先URL、application.properties から読み込む
     @Value("${stripe.success-url}")
     private String stripeSuccessUrl;
 
-    // 決済キャンセル時のリダイレクト先URL、application.properties から読み込む
     @Value("${stripe.cancel-url}")
     private String stripeCancelUrl; 
     
     private final HouseRepository houseRepository;
-    //private final ReservationService reservationService;
+    //private final ReservationService reservationService; 決済機能無効化の為、コメントアウト
 
     public StripeService(HouseRepository houseRepository, ReservationService reservationService) {
         this.houseRepository = houseRepository;
-        //this.reservationService = reservationService;
+        //this.reservationService = reservationService; 決済機能無効化の為、コメントアウト
     }
 
     // 依存性の注入後に一度だけ実行するメソッド
@@ -151,7 +148,7 @@ public class StripeService {
         // EventオブジェクトからStripeObjectオブジェクトを取得する
         Optional<StripeObject> optionalStripeObject = event.getDataObjectDeserializer().getObject();
 
-        // OptionalクラスのifPresentOrElse()メソッドを使うことで、以下のように「値が存在する場合としない場合の処理」を簡潔に書くことができます。
+        // OptionalクラスのifPresentOrElse()メソッドを使うことで、以下のように「値が存在する場合としない場合の処理」を簡潔に書くことができる
         // optionalStripeObject.ifPresentOrElse(stripeObject -> { nullでない場合の処理 }, () -> { それ以外（null）の場合の処理 })
         optionalStripeObject.ifPresentOrElse(stripeObject -> {
             // StripeObjectオブジェクトをSessionオブジェクトに型変換する

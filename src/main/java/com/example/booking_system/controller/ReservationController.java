@@ -44,8 +44,8 @@ public class ReservationController {
         //this.stripeService = stripeService;   決済機能ありの場合はコメントアウトを解除
     }
 
-    // Spring Securityが提供する @AuthenticationPrincipal アノテーションを引数につけることで、現在ログイン中のユーザー情報を取得できます。
-    // なお、アノテーションをつける引数は UserDetailsインターフェースを実装したクラスのオブジェクト（本プロジェクトでは UserDetailsImpl クラスのオブジェクト）です。
+    // Spring Securityが提供する @AuthenticationPrincipal アノテーションを引数につけて現在ログイン中のユーザー情報を取得する
+    // アノテーションをつける引数は UserDetailsインターフェースを実装したクラスのオブジェクト（本プロジェクトでは UserDetailsImpl クラスのオブジェクト）
     @GetMapping("/reservations")
     public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
                         @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable,
@@ -163,8 +163,8 @@ public class ReservationController {
         reservationService.createReservation(reservationDTO, user);
 
         // セッションからDTOを削除する
-        // セッションのデータはアプリケーションサーバーのメモリ上に保持されることが多いのですが、メモリのリソースは限られています。
-        // メモリを節約するためにもセッションの不要なデータは削除するように心がけましょう。
+        // セッションのデータはアプリケーションサーバーのメモリ上に保持されることが多く、
+        // メモリを節約するためにもセッションの不要なデータは削除する様にした方が無難
         httpSession.removeAttribute("reservationDTO");
 
         return "redirect:/reservations?reserved";

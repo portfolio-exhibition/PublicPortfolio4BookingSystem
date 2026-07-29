@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 public class ReservationInputForm {
 	
-	// @DateTimeFormatアノテーションをつけることで、pattern属性に指定したフォーマットの文字列をLocalDate型など日時型のデータに変換してくれます。
-	// 例えば今回はpattern属性の値に"yyyy-MM-dd"を指定しているので、フォームから送信された文字列が2024-08-01のようにフォーマットに一致する場合はLocalDate型に変換し、2024年8月1日のようにフォーマットに一致しない場合はエラーを発生させます。
+	// @DateTimeFormatアノテーションをつけることで、pattern属性に指定したフォーマットの文字列をLocalDate型など日時型のデータに変換してくれる
+	// 例えば今回はpattern属性の値に"yyyy-MM-dd"を指定しているので、フォームから送信された文字列が2024-08-01のようにフォーマットに一致する場合はLocalDate型に変換し、2024年8月1日のようにフォーマットに一致しない場合はエラーを発生さる
     @NotNull(message = "チェックイン日を選択してください。")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkinDate;

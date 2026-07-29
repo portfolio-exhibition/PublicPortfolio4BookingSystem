@@ -40,7 +40,7 @@ public class HouseService {
     
     /*
     　部分一致検索を行うために、keyword（文字列）の前後に"%"をつけている
-    　なお、findByNameLike()は HouseRepository.java に定義した独自のメソッドです。
+    　findByNameLike()は HouseRepository.java に定義した独自のメソッド
      */
     // 指定されたキーワードを民宿名に含む民宿を、ページングされた状態で取得する
     public Page<House> findHousesByNameLike(String keyword, Pageable pageable) {
@@ -136,8 +136,6 @@ public class HouseService {
         houseRepository.save(house);
     }
     
-    //createHouse()メソッドとほとんど一緒ですが、updateHouse()メソッドではエンティティをインスタンス化するのではなく、
-    //第2引数で更新対象のエンティティを受け取ります。
     @Transactional
     public void updateHouse(HouseEditForm houseEditForm, House house) {
         MultipartFile imageFile = houseEditForm.getImageFile();
